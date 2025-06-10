@@ -1,21 +1,21 @@
 package com.equipo.taskmaster;
-
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-import org.springframework.web.reactive.function.server.RouterFunction;
-
-@SpringBootApplication
+import java.util.ArrayList;
 public class App {
-
+    public static ArrayList<String> tasks = new
+            ArrayList<>();
     public static void main(String[] args) {
-        SpringApplication.run(App.class, args);
+        System.out.println("Bienvenido a TaskMaster!");
+        addTask("Estudiar Maven");
+        addTask("Leer sobre CI/CD");
+        printTasks();
     }
-
-    @Bean
-    public RouterFunction<?> routes(WelcomeHandler welcomeHandler, GreetingHandler greetingHandler) {
-        return welcomeHandler.routes()
-            .and(greetingHandler.routes());
+    public static void addTask(String task) {
+        tasks.add(task);
+    }
+    public static void printTasks() {
+        System.out.println("Tareas pendientes:");
+        for (String t : tasks) {
+            System.out.println("- " + t);
+        }
     }
 }
-
