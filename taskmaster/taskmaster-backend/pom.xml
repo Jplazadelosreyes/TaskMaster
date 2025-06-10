@@ -47,6 +47,7 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
     <build>
         <plugins>
             <plugin>
@@ -65,12 +66,33 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
-                <version>3.1.0</version>
+                <version>3.1.0</version> <executions>
+                    <execution>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        </execution>
+                </executions>
                 <configuration>
                     <mainClass>com.equipo.taskmaster.App</mainClass>
-                </configuration>
+                    </configuration>
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <env.name>Desarrollo</env.name>
+            </properties>
+        </profile>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <env.name>Producción</env.name>
+            </properties>
+        </profile>
+    </profiles>
 
 </project>
